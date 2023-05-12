@@ -15,6 +15,7 @@ specifiers:
   '@types/node': 20.1.3
   '@types/react': 18.2.6
   '@types/react-dom': 18.2.4
+  date-fns: ^2.30.0
   eslint: 8.40.0
   eslint-config-next: 13.4.2
   next: 13.4.2
@@ -37,6 +38,7 @@ dependencies:
   '@types/node': 20.1.3
   '@types/react': 18.2.6
   '@types/react-dom': 18.2.4
+  date-fns: 2.30.0
   eslint: 8.40.0
   eslint-config-next: 13.4.2_3qfatcekpgbllh6uk5ivyhkbxq
   next: 13.4.2_biqbaboplfbrettd7655fr4n2y
@@ -1364,6 +1366,13 @@ packages:
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
+    dev: false
+
+  /date-fns/2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
+    dependencies:
+      '@babel/runtime': 7.21.5
     dev: false
 
   /debug/3.2.7:
