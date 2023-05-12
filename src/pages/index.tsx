@@ -3,6 +3,16 @@ import { Inter } from "next/font/google";
 import data from "../mock/data.json";
 import dynamic from "next/dynamic";
 import homeStyles from "../styles/Home.module.css";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Group,
+  SimpleGrid,
+  Title,
+} from "@mantine/core";
+import InsightCard from "@/components/InsightCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +28,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${inter.className}`}>
+        <Group position="apart" mt="xl">
+          <Box>
+            <Flex gap="md" justify="center" align="center">
+              <Avatar radius="50%" size="xl" />
+              <Title order={1}>vitalik.eth</Title>
+            </Flex>
+          </Box>
+          <Button color="teal">Follow</Button>
+        </Group>
+
+        <SimpleGrid cols={2} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
+          <InsightCard />
+          <InsightCard />
+          <InsightCard />
+          <InsightCard />
+        </SimpleGrid>
+
         <div className={homeStyles.chart}>
           <Heatmap data={data} />
         </div>
