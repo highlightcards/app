@@ -1,6 +1,6 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
 
-const Heatmap = ({ data }) => {
+const Heatmap = ({ data }: any) => {
   return (
     <ResponsiveCalendar
       data={data}
