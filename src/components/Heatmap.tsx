@@ -6,13 +6,11 @@ import useSWR from "swr";
 
 const Heatmap = () => {
   const { address, chainId } = useAddress();
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     `/api/heatmap?address=${address}&chainId=${chainId}`
   );
 
   if (isLoading || !data) return null;
-
-  console.log(data)
 
   return (
     <>
