@@ -3,6 +3,7 @@ import Uniswap from "./chain/Uniswap";
 import LensInterests from "./chain/LensInterests";
 import LensActivity from "./chain/LensActivity";
 import AirstackNFTs from "./chain/AirstackNFTs";
+import WorldCoin from "./chain/WorldCoin";
 
 const highlights = [
   firstTransaction(1),
@@ -12,6 +13,7 @@ const highlights = [
   firstTransaction(137),
   firstTransaction(42161),
   firstTransaction(43114),
+  WorldCoin,
   Uniswap,
   LensInterests,
   LensActivity,

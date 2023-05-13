@@ -87,7 +87,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
         )}
         <Text fw={600}>{wrapStarredWords(data?.title, data.color)}</Text>
       </Flex>
-      <Text fz="sm" c="dimmed" mt={2}>
+      <Text fz="sm" c="dimmed" mt={2} style={{ height: 21 }}>
         {data?.metadata}
       </Text>
 
