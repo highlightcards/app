@@ -53,7 +53,7 @@ async function getUniswap(query: HighlightRequest) {
   const tx = transactions[0];
 
   const response: HighlightResponse = {
-    title: "Member of *ApeCoin DAO*",
+    title: "Holder of *$APE*",
     metadata: `Joined ${formatDistanceToNow(
       fromUnixTime(Number.parseInt(tx.timeStamp)),
       {
@@ -62,9 +62,9 @@ async function getUniswap(query: HighlightRequest) {
     )}`,
     icon: "/img/uniswap.png",
     color: "#FF007A",
-    statistic: `Owns ${new Decimal(
+    statistic: `Owns *${new Decimal(
       ethers.formatEther(balance as BigNumberish)
-    ).toFixed(1)} ${tx.tokenSymbol} tokens`,
+    ).toFixed(1)} $${tx.tokenSymbol}* tokens`,
   };
   return response;
 }
