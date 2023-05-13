@@ -33,13 +33,13 @@ async function getFirstTransaction(query: HighlightRequest) {
   }
 
   const response: HighlightResponse = {
-    title: "First Transaction on " + chain.name,
+    title: `First Transaction on *${chain.name}*`,
     metadata: formatDistanceToNow(fromUnixTime(Number.parseInt(tx.timeStamp)), {
       addSuffix: true,
     }),
     icon: chain.icon,
     color: chain.color,
-    statistic: "Funded from " + tx.from,
+    statistic: `Funded from *${tx.from}*`,
   };
   return response;
 }
