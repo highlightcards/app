@@ -14,4 +14,5 @@ export interface HighlightResponse {
   icon: string;
   color: string;
   statistic: string;
+  multiple?: boolean;
 }
