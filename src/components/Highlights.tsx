@@ -18,6 +18,7 @@ const Highlights = () => {
             highlightId={highlight.id}
             chainId={chainId}
             walletAddress={address}
+            clickable
           />
         ))}
       </SimpleGrid>
