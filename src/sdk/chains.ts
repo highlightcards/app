@@ -15,13 +15,13 @@ export const chains = [
     id: 56,
     name: "Binance Smart Chain",
     color: "#F0B90B",
-    icon: "",
+    icon: "/img/binance.png",
   },
   {
     id: 100,
     name: "Gnosis Chain",
     color: "#0d8e74",
-    icon: "",
+    icon: "/img/gnosis.png",
   },
   {
     id: 137,
@@ -33,7 +33,7 @@ export const chains = [
     id: 250,
     name: "Fantom",
     color: "#1969ff",
-    icon: "",
+    icon: "/img/fantom.png",
   },
   {
     id: 42161,
@@ -45,6 +45,6 @@ export const chains = [
     id: 43114,
     name: "Avalanche",
     color: "#e84142",
-    icon: "",
+    icon: "/img/avalanche.png",
   },
 ];

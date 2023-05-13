@@ -1,11 +1,17 @@
 import { ethers, BigNumberish } from "ethers";
+import { ChainId, Token, Fetcher, WETH, Route } from "@uniswap/sdk";
 import Decimal from "decimal.js";
 import { chains } from "@/sdk/chains";
 import { HighlightResponse, HighlightRequest, HighlightHandler } from "@/types";
 import { Etherscan } from "@/sdk/etherscan";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 
-const contractAddress = "0x4d224452801ACEd8B2F0aebE155379bb5D594381"; //$APE
+const chainId = ChainId.MAINNET;
+const APE = new Token(
+  chainId,
+  "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
+  18
+);
 
 interface EtherscanTransaction {
   timeStamp: string;
@@ -13,12 +19,18 @@ interface EtherscanTransaction {
   tokenSymbol: string;
 }
 
+async function getPriceInWETH() {
+  const pair = await Fetcher.fetchPairData(APE, WETH[APE.chainId]);
+  const route = new Route([pair], WETH[APE.chainId]);
+  return route.midPrice.invert().toSignificant(6);
+}
+
 async function getUniswap(query: HighlightRequest) {
   const balance = await Etherscan.query(
     {
       module: "account",
       action: "tokenbalance",
-      contractAddress: contractAddress,
+      contractAddress: APE.address,
       address: query.walletAddress,
       tag: "latest",
     },
@@ -31,7 +43,7 @@ async function getUniswap(query: HighlightRequest) {
     {
       module: "account",
       action: "tokentx",
-      contractAddress: contractAddress,
+      contractAddress: APE.address,
       address: query.walletAddress,
       tag: "latest",
       page: "1",
@@ -51,6 +63,8 @@ async function getUniswap(query: HighlightRequest) {
   }
 
   const tx = transactions[0];
+  const weth = await getPriceInWETH();
+  console.log("weth: ", weth);
 
   const response: HighlightResponse = {
     title: "Holder of *$APE*",
@@ -64,7 +78,9 @@ async function getUniswap(query: HighlightRequest) {
     color: "#FF007A",
     statistic: `Owns *${new Decimal(
       ethers.formatEther(balance as BigNumberish)
-    ).toFixed(1)} $${tx.tokenSymbol}* tokens`,
+    ).toFixed(1)} $${tx.tokenSymbol}* valued at *${new Decimal(weth).toFixed(
+      4
+    )} wETH`,
   };
   return response;
 }
