@@ -22,7 +22,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Center mih="100vh">
+      <Center mih="calc(100vh - 80px)">
         <Stack justify="center" align="center" w="100%">
           <Autocomplete
             styles={{

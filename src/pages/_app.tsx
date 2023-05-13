@@ -4,6 +4,7 @@ import { Container, MantineProvider } from "@mantine/core";
 import { SWRConfig } from "swr";
 import { WagmiConfig, createConfig, mainnet } from "wagmi";
 import { createPublicClient, http } from "viem";
+import Navigation from "@/components/Navigation";
 
 const config = createConfig({
   autoConnect: true,
@@ -49,6 +50,7 @@ export default function App(props: AppProps) {
                   fetch(resource, init).then((res) => res.json()),
               }}
             >
+              <Navigation />
               <Component {...pageProps} />
             </SWRConfig>
           </WagmiConfig>
