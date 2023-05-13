@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const response = await highlight.resolve({
     walletAddress: address as string,
-    chainId: chainId ? parseInt(chainId as string) : 1,
+    chainId: Number.parseInt(chainId as string),
   });
 
   res.status(200).json(response);

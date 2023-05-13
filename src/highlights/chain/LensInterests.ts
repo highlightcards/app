@@ -20,12 +20,8 @@ async function getLensInterests(query: HighlightRequest) {
     },
   });
 
-  console.log("defaultProfile", defaultProfile);
-
   const profileId = defaultProfile?.data?.defaultProfile?.id;
   if (!profileId) return null;
-
-  console.log("profileId", profileId);
 
   const profileInterests = await apolloClient.query({
     query: gql(`query Profile($profileId: ProfileId!) {
@@ -40,8 +36,6 @@ async function getLensInterests(query: HighlightRequest) {
     },
   });
 
-  console.log("profileInterests", profileInterests);
-
   const interests = profileInterests?.data?.profile?.interests;
   if (interests.length === 0) return null;
 
@@ -51,6 +45,7 @@ async function getLensInterests(query: HighlightRequest) {
     icon: "/img/lens.png",
     color: "#216435",
     statistic: `According to *Lens Protocol*`,
+    multiple: true,
   };
   return response;
 }
