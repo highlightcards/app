@@ -21,11 +21,7 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   });
 
   const chainId = useMemo(() => {
-    try {
-      return Number.parseInt(chainIdStr as string);
-    } catch (e) {
-      return 1;
-    }
+    return chainIdStr ? parseInt(chainIdStr as string) : 1;
   }, [chainIdStr]);
 
   const address = useMemo(() => {

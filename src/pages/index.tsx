@@ -12,8 +12,19 @@ import {
   Image,
 } from "@mantine/core";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  const [value, setValue] = useState("");
+
+  const handleChange = (event: any) => {
+    if (event.key === "Enter") {
+      router.push(`${value}`);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -25,6 +36,9 @@ export default function Home() {
       <Center mih="calc(100vh - 80px)">
         <Stack justify="center" align="center" w="100%">
           <Autocomplete
+            value={value}
+            onChange={setValue}
+            onKeyDown={handleChange}
             styles={{
               input: {
                 color: "#000",
@@ -32,7 +46,7 @@ export default function Home() {
 
                 "::placeholder": {
                   color: "#777",
-                }
+                },
               },
             }}
             data={[]}

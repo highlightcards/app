@@ -1,11 +1,14 @@
 import { Anchor, Box, Button, Group, Image } from "@mantine/core";
 import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
+import Link from "next/link";
 
 const Navigation = () => {
   return (
     <Group h="80px" position="apart" mx="md" my="0">
       <h1>
-        <Image src="/logo.svg" alt="Highlight" />
+        <Link href="/">
+          <Image src="/logo.svg" alt="Highlight" />
+        </Link>
       </h1>
       <Anchor href="https://github.com/mprasanjith/insights-os" target="_blank">
         <Button
