@@ -3,32 +3,47 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { gql } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://api-mumbai.lens.dev/",
+  uri: "https://api.lens.dev/",
   cache: new InMemoryCache(),
 });
 
 async function getLensInterests(query: HighlightRequest) {
   const defaultProfile = await apolloClient.query({
-    query: gql(`query DefaultProfile {
-      defaultProfile(request: { ethereumAddress: "0x3A5bd1E37b099aE3386D13947b6a90d97675e5e3"}) {
+    query: gql(`query DefaultProfile($walletAddress: EthereumAddress!) {
+      defaultProfile(request: { ethereumAddress: $walletAddress }) {
         id
       }
-    }`),
+    }
+    `),
+    variables: {
+      walletAddress: query.walletAddress,
+    },
   });
 
-  const profileId = defaultProfile.data.defaultProfile.id;
+  console.log("defaultProfile", defaultProfile);
+
+  const profileId = defaultProfile?.data?.defaultProfile?.id;
+  if (!profileId) return null;
+
+  console.log("profileId", profileId);
 
   const profileInterests = await apolloClient.query({
-    query: gql(`query Profile {
-      profile(request: { profileId: "${profileId}" }) {
+    query: gql(`query Profile($profileId: ProfileId!) {
+      profile(request: { profileId: $profileId }) {
         id
         interests
       }
     }
     `),
+    variables: {
+      profileId,
+    },
   });
 
-  const interests = profileInterests.data.profile.interests;
+  console.log("profileInterests", profileInterests);
+
+  const interests = profileInterests?.data?.profile?.interests;
+  if (interests.length === 0) return null;
 
   const response: HighlightResponse = {
     title: `Interested in ${getInterestsTitle(interests)}`,
@@ -41,7 +56,7 @@ async function getLensInterests(query: HighlightRequest) {
 }
 
 const handler: HighlightHandler = {
-  id: "lens",
+  id: "lens-interests",
   resolve: getLensInterests,
 };
 

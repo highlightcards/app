@@ -11,7 +11,8 @@
   "dependencies": {
     "@airstack/airstack-react": "^0.2.1",
     "@apollo/client": "^3.7.14",
-    "@dynamic-labs/sdk-react": "^0.16.16",
+    "@dynamic-labs/sdk-react": "0.16.17-viem.0",
+    "@dynamic-labs/wagmi-connector": "0.16.17-viem.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
     "@mantine/core": "^6.0.10",
@@ -47,5 +48,10 @@
     "typescript": "5.0.4",
     "viem": "^0.3.24",
     "wagmi": "^1.0.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@walletconnect/universal-provider": "2.6.2"
+    }
   }
 }
