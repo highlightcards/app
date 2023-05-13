@@ -15,17 +15,22 @@ async function getFirstTransaction(query: HighlightRequest) {
     throw new Error("No wallet address provided");
   }
 
-  const result = await Etherscan.query<EtherscanTransaction[]>(
-    {
-      module: "account",
-      action: "txlist",
-      address: query.walletAddress,
-      sort: "asc",
-      page: "1",
-      offset: "1",
-    },
-    query.chainId
-  );
+  let result: EtherscanTransaction[] = [];
+  try {
+    result = await Etherscan.query<EtherscanTransaction[]>(
+      {
+        module: "account",
+        action: "txlist",
+        address: query.walletAddress,
+        sort: "asc",
+        page: "1",
+        offset: "1",
+      },
+      query.chainId
+    );
+  } catch (e) {
+    return null;
+  }
 
   if (result?.length === 0) {
     return null;

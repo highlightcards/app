@@ -45,7 +45,7 @@ export default function App(props: AppProps) {
           >
             <Navigation />
 
-            <Container size="md">
+            <Container size="md" mb="xl">
               <SWRConfig
                 value={{
                   fetcher: (resource, init) =>

@@ -29,7 +29,8 @@ async function getLensActivity(query: HighlightRequest) {
     }`),
   });
 
-  const totalPublications = _response.data.profile.stats.totalPublications;
+  const totalPublications = _response?.data?.profile?.stats?.totalPublications;
+  if (!totalPublications || totalPublications == 0) return null;
 
   _response = await apolloClient.query({
     query: gql(`query Publications {
@@ -389,9 +390,9 @@ async function getLensActivity(query: HighlightRequest) {
   });
 
   const latestPublicationCreatedAt =
-    _response?.data?.publications?.items[0]?.createdAt;
-
+    _response?.data?.publications?.items?.[0]?.createdAt;
   if (!latestPublicationCreatedAt) return null;
+
   const createdAt = Date.parse(latestPublicationCreatedAt);
 
   const response: HighlightResponse = {

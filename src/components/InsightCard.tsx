@@ -1,5 +1,13 @@
 import useSWR from "swr";
-import { Card, Text, Flex, ColorSwatch, Box, Image } from "@mantine/core";
+import {
+  Card,
+  Text,
+  Flex,
+  ColorSwatch,
+  Box,
+  Image,
+  Skeleton,
+} from "@mantine/core";
 
 interface HighlightCardProps {
   highlightId: string;
@@ -29,12 +37,24 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
   walletAddress,
   chainId,
 }) => {
-  const { data, error } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `/api/highlights/${highlightId}?address=${walletAddress}&chainId=${chainId}`
   );
 
+  if (isLoading)
+    return (
+      <Card withBorder padding="lg" radius="lg">
+        <Flex align="center" gap="6px">
+          <Skeleton height={12} circle radius="xl" />
+          <Skeleton height={12} width="200px" />
+        </Flex>
+
+        <Skeleton height={12} width="150px" mt="sm" />
+        <Skeleton height={12} width="100%" mt="md" />
+      </Card>
+    );
+
   if (error || data === null) return null;
-  if (!data) return <div>loading...</div>;
 
   return (
     <Card withBorder padding="lg" radius="lg">
