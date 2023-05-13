@@ -52,7 +52,7 @@ async function getAirstackNFTs(query: HighlightRequest) {
 }
 
 const handler: HighlightHandler = {
-  id: "airstack",
+  id: "airstack-nfts",
   resolve: getAirstackNFTs,
 };
 
