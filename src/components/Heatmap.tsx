@@ -55,7 +55,7 @@ const Heatmap = () => {
                     size="sm"
                     weight="bolder"
                     h="36"
-                    mx="lg"
+                    px="0.4rem"
                   >
                     {year}
                   </Text>
@@ -66,6 +66,7 @@ const Heatmap = () => {
                 <Button
                   key={year}
                   onClick={() => setCurrentYear(year)}
+                  px="0.3rem"
                   variant="subtle"
                   color="gray"
                   size="sm"
