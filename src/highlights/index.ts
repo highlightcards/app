@@ -6,9 +6,11 @@ import LensActivity from "./chain/LensActivity";
 import AirstackNFTs from "./chain/AirstackNFTs";
 import WorldCoin from "./chain/WorldCoin";
 import AirstackLens from "./chain/AirstackLens";
+import AirstackFarcaster from "./chain/AirstackFarcaster";
 
 const highlights = [
   AirstackLens,
+  AirstackFarcaster,
   LensActivity,
   LensInterests,
   UniswapAPE,
