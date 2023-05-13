@@ -60,7 +60,7 @@ async function getUniswap(query: HighlightRequest) {
         addSuffix: true,
       }
     )}`,
-    icon: chain.icon,
+    icon: "/img/uniswap.png",
     color: chain.color,
     statistic: `Owns ${new Decimal(
       ethers.formatEther(balance as BigNumberish)
