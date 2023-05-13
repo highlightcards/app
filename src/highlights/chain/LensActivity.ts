@@ -37,7 +37,7 @@ async function getLensActivity(query: HighlightRequest) {
       publications(request: {
         profileId: "${profileId}",
         publicationTypes: [POST, COMMENT, MIRROR],
-        limit: 10
+        limit: 1
       }) {
         items {
           __typename 
