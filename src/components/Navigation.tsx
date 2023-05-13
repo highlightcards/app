@@ -3,7 +3,7 @@ import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
 
 const Navigation = () => {
   return (
-    <Group h="80px" position="apart">
+    <Group h="80px" position="apart" mx="md" my="0">
       <h1>
         <Image src="/logo.svg" alt="Highlight" />
       </h1>

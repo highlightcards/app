@@ -42,6 +42,8 @@ export default function App(props: AppProps) {
           }),
         }}
       >
+        <Navigation />
+
         <Container size="md">
           <WagmiConfig config={config}>
             <SWRConfig
@@ -50,7 +52,6 @@ export default function App(props: AppProps) {
                   fetch(resource, init).then((res) => res.json()),
               }}
             >
-              <Navigation />
               <Component {...pageProps} />
             </SWRConfig>
           </WagmiConfig>
