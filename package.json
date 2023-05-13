@@ -15,6 +15,7 @@
     "@dynamic-labs/wagmi-connector": "0.16.17-viem.0",
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
+    "@lens-protocol/widgets-react": "^0.0.14",
     "@mantine/core": "^6.0.10",
     "@mantine/hooks": "^6.0.10",
     "@mantine/next": "^6.0.10",
