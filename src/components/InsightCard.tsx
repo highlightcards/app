@@ -1,43 +1,40 @@
-import {
-  Card,
-  Text,
-  Progress,
-  Badge,
-  Group,
-} from "@mantine/core";
+import useSWR from "swr";
+import { Card, Text, Progress, Badge, Group } from "@mantine/core";
 
-function InsightCard() {
+interface HighlightCardProps {
+  highlightId: string;
+  walletAddress: string;
+  chainId: number;
+}
+
+const HighlightCard: React.FC<HighlightCardProps> = ({
+  highlightId,
+  walletAddress,
+  chainId,
+}) => {
+  const { data, error } = useSWR(
+    `/api/highlights/${highlightId}?address=${walletAddress}&chainId=${chainId}`
+  );
+
+  if (error) return null;
+  if (!data) return <div>loading...</div>;
 
   return (
     <Card withBorder padding="lg" radius="md">
-      <Group position="apart">
-        <Badge>12 days left</Badge>
-      </Group>
-
       <Text fz="lg" fw={500} mt="md">
-        5.3 minor release (September 2022)
+        {data?.title}
       </Text>
       <Text fz="sm" c="dimmed" mt={5}>
-        Form context management, Switch, Grid and Indicator components
-        improvements, new hook and 10+ other changes
+        {data?.metadata}
       </Text>
 
       <Text c="dimmed" fz="sm" mt="md">
-        Tasks completed:{" "}
-        <Text
-          span
-          fw={500}
-          sx={(theme) => ({
-            color: theme.colorScheme === "dark" ? theme.white : theme.black,
-          })}
-        >
-          23/36
-        </Text>
+        {data?.statistic}
       </Text>
 
       <Progress value={(23 / 36) * 100} mt={5} />
     </Card>
   );
-}
+};
 
-export default InsightCard;
+export default HighlightCard;

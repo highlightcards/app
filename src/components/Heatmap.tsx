@@ -11,7 +11,7 @@ interface HeatMapProps {
 }
 
 const Heatmap = ({ data }: any) => {
-const address = "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+const address = "0xBA78CD28F7132958235D278fF3C5DC5E6d34cc15"
 const [transactions, setTransactions] = useState<HeatMapProps[]>([]);
 const [firstTransactionDay, setFirstTransactionDay] = useState<string>("");
 const [lastTransactionDay, setLastTransactionDay] = useState<string>("");
