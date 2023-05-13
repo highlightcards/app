@@ -9,7 +9,9 @@ const Heatmap = dynamic(() => import("../components/Heatmap"), { ssr: false });
 const InsightsPage = () => {
   return (
     <AddressProvider>
-      <Header />
+      <Box pt="xl">
+        <Header />
+      </Box>
 
       <div
         style={{

@@ -1,6 +1,6 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
 import { formatToday, formattedDay, formatTimeDuration } from "@/helpers/time";
-import { Text } from "@mantine/core";
+import { Flex, Group, Text } from "@mantine/core";
 import { useAddress } from "@/providers/AddressProvider";
 import useSWR from "swr";
 
@@ -14,10 +14,18 @@ const Heatmap = () => {
 
   return (
     <>
-      <Text size={"md"}>
-        {data?.count} on-chain memories over{" "}
-        {formatTimeDuration(Number(data.start), Number(data.end))}
-      </Text>
+      <Group position="apart">
+        <Text size={"md"} weight="500">
+          {data?.count} on-chain memories over{" "}
+          {formatTimeDuration(Number(data.start), Number(data.end))}
+        </Text>
+        <Group>
+          <div>2019</div>
+          <div>2019</div>
+          <div>2019</div>
+          <div>2019</div>
+        </Group>
+      </Group>
       <ResponsiveCalendar
         data={data.blocks}
         from={formattedDay(data.start)}
