@@ -11,7 +11,7 @@ import {
   Group,
   SimpleGrid,
   Title,
-  Text
+  Text,
 } from "@mantine/core";
 import HighlightCard from "@/components/InsightCard";
 import highlights from "@/highlights";
@@ -52,8 +52,6 @@ export default function Home() {
             />
           ))}
         </SimpleGrid>
-
-
       </main>
     </>
   );

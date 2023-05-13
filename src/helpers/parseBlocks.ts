@@ -1,10 +1,9 @@
-import { formattedDay } from "./time"
-
+import { formattedDay } from "./time";
 
 export interface TransactionStatus {
-    message: string;
-    result: Transaction[];
-    status: string;
+  message: string;
+  result: Transaction[];
+  status: string;
 }
 export interface Transaction {
   blockHash: string;
@@ -32,8 +31,8 @@ export interface Transaction {
 export function parseBlocks(transactions: Transaction[]) {
   const heatMapDataPoint: Record<string, number> = {};
   transactions.forEach((transaction) => {
-    const day = formattedDay(Number(transaction.timeStamp))
-    
+    const day = formattedDay(Number(transaction.timeStamp));
+
     if (heatMapDataPoint[day]) {
       heatMapDataPoint[day]++;
     } else {

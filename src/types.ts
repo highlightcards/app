@@ -1,11 +1,13 @@
 export interface HighlightHandler {
   id: string;
-  resolve: (query: HighlightRequest) => Promise<HighlightResponse>;
+  resolve: (query: HighlightRequest) => Promise<HighlightResponse | null>;
 }
 
-export interface HighlightUniswayHandler {
+export interface HighlightUniswapHandler {
   id: string;
-  resolve: (query: HighlightUniswapRequest) => Promise<HighlightResponse>;
+  resolve: (
+    query: HighlightUniswapRequest
+  ) => Promise<HighlightResponse | null>;
 }
 
 export interface HighlightRequest {
@@ -16,6 +18,7 @@ export interface HighlightRequest {
 export interface HighlightUniswapRequest {
   walletAddress: string;
   tokenAddress: string;
+  chainId?: number;
 }
 
 export interface HighlightResponse {
