@@ -1,3 +1,5 @@
+import { shortenAddress } from "@/helpers/address";
+import { capitalizeFirstWord } from "@/helpers/string";
 import { chains } from "@/sdk/chains";
 import { Etherscan } from "@/sdk/etherscan";
 import { HighlightHandler, HighlightRequest, HighlightResponse } from "@/types";
@@ -34,12 +36,14 @@ async function getFirstTransaction(query: HighlightRequest) {
 
   const response: HighlightResponse = {
     title: `First Transaction on *${chain.name}*`,
-    metadata: formatDistanceToNow(fromUnixTime(Number.parseInt(tx.timeStamp)), {
-      addSuffix: true,
-    }),
+    metadata: capitalizeFirstWord(
+      formatDistanceToNow(fromUnixTime(Number.parseInt(tx.timeStamp)), {
+        addSuffix: true,
+      })
+    ),
     icon: chain.icon,
-    color: chain.color,
-    statistic: `Funded from *${tx.from}*`,
+    color: "#0066FF",
+    statistic: `Funded from *${shortenAddress(tx.from as `0x${string}`)}*`,
   };
   return response;
 }

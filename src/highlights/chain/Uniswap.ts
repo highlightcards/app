@@ -1,11 +1,7 @@
 import { ethers, BigNumberish } from "ethers";
 import Decimal from "decimal.js";
 import { chains } from "@/sdk/chains";
-import {
-  HighlightUniswapRequest,
-  HighlightResponse,
-  HighlightUniswapHandler,
-} from "@/types";
+import { HighlightResponse, HighlightRequest, HighlightHandler } from "@/types";
 import { Etherscan } from "@/sdk/etherscan";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 
@@ -17,7 +13,7 @@ interface EtherscanTransaction {
   tokenSymbol: string;
 }
 
-async function getUniswap(query: HighlightUniswapRequest) {
+async function getUniswap(query: HighlightRequest) {
   const balance = await Etherscan.query(
     {
       module: "account",
@@ -73,7 +69,7 @@ async function getUniswap(query: HighlightUniswapRequest) {
   return response;
 }
 
-const handler: HighlightUniswapHandler = {
+const handler: HighlightHandler = {
   id: "uniswap",
   resolve: getUniswap,
 };

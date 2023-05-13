@@ -1,6 +1,7 @@
-import { Center, Loader } from "@mantine/core";
+import { Alert, Center, Loader } from "@mantine/core";
 import { useRouter } from "next/router";
 import React, { PropsWithChildren, createContext, useMemo } from "react";
+import { isAddress } from "viem";
 import { useEnsAddress } from "wagmi";
 
 const AddressContext = createContext({
@@ -31,6 +32,17 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
     if (ensAddress) return ensAddress;
     return addressStr;
   }, [ensAddress, addressStr]);
+
+  const isValidAddress = isAddress(address);
+
+  if (!isValidAddress) {
+    return (
+      <Alert title="That doesn't look right!" color="red" mt="xl">
+        Looks like we could not find an address at <b>{addressStr}</b>.
+        Please double check the address and try again.
+      </Alert>
+    );
+  }
 
   if (!address) {
     return (

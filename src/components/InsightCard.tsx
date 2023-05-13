@@ -1,10 +1,28 @@
 import useSWR from "swr";
-import { Card, Text, Progress, Badge, Group } from "@mantine/core";
+import { Card, Text, Flex, ColorSwatch } from "@mantine/core";
+import ReactMarkdown from "react-markdown";
 
 interface HighlightCardProps {
   highlightId: string;
   walletAddress: string;
   chainId: number;
+}
+
+function wrapStarredWords(input: string, color: string) {
+  const parts = input.split("*");
+
+  const output = parts.map((part, i) => {
+    if (i % 2 === 1) {
+      return (
+        <span key={i} style={{ color }}>
+          {part}
+        </span>
+      );
+    }
+    return part;
+  });
+
+  return output;
 }
 
 const HighlightCard: React.FC<HighlightCardProps> = ({
@@ -20,19 +38,18 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
   if (!data) return <div>loading...</div>;
 
   return (
-    <Card withBorder padding="lg" radius="md">
-      <Text fz="lg" fw={500} mt="md">
-        {data?.title}
-      </Text>
-      <Text fz="sm" c="dimmed" mt={5}>
+    <Card withBorder padding="lg" radius="lg">
+      <Flex align="center" gap="6px">
+        <ColorSwatch size="10px" color={data.color} withShadow={false} />
+        <Text fw={600}>{wrapStarredWords(data?.title, data.color)}</Text>
+      </Flex>
+      <Text fz="sm" c="dimmed" mt={2}>
         {data?.metadata}
       </Text>
 
-      <Text c="dimmed" fz="sm" mt="md">
-        {data?.statistic}
+      <Text fz="sm" mt="md">
+        {wrapStarredWords(data?.statistic, data.color)}
       </Text>
-
-      <Progress value={(23 / 36) * 100} mt={5} />
     </Card>
   );
 };

@@ -4,9 +4,6 @@ import { Container, MantineProvider } from "@mantine/core";
 import { SWRConfig } from "swr";
 import { WagmiConfig, createConfig, mainnet } from "wagmi";
 import { createPublicClient, http } from "viem";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const config = createConfig({
   autoConnect: true,
@@ -22,35 +19,41 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>Highlights</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
 
-      <main className={`${inter.className}`}>
-        <WagmiConfig config={config}>
-          <SWRConfig
-            value={{
-              fetcher: (resource, init) =>
-                fetch(resource, init).then((res) => res.json()),
-            }}
-          >
-            <MantineProvider
-              withGlobalStyles
-              withNormalizeCSS
-              theme={{
-                colorScheme: "light",
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: "light",
+          fontFamily: "Inter, sans-serif",
+          headings: { fontFamily: "Inter, sans-serif" },
+          globalStyles: (theme) => ({
+            body: {
+              ...theme.fn.fontStyles(),
+              backgroundColor: "#FAFAFA",
+            },
+          }),
+        }}
+      >
+        <Container size="md">
+          <WagmiConfig config={config}>
+            <SWRConfig
+              value={{
+                fetcher: (resource, init) =>
+                  fetch(resource, init).then((res) => res.json()),
               }}
             >
-              <Container size="md">
-                <Component {...pageProps} />
-              </Container>
-            </MantineProvider>
-          </SWRConfig>
-        </WagmiConfig>
-      </main>
+              <Component {...pageProps} />
+            </SWRConfig>
+          </WagmiConfig>
+        </Container>
+      </MantineProvider>
     </>
   );
 }
