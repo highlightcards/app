@@ -1,6 +1,6 @@
 export function shortenAddress(
   address: `0x${string}`,
-  frontLength = 6,
+  frontLength = 5,
   backLength = 4
 ) {
   // Check if the address is valid
