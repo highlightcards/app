@@ -1,11 +1,24 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
-import { formatToday, formattedDay, formatTimeDuration } from "@/helpers/time";
-import { Flex, Group, Text } from "@mantine/core";
+import {
+  formatTimeDuration,
+  getCalendarYearsBetweenTimestamps,
+} from "@/helpers/time";
+import { Button, Group, Text } from "@mantine/core";
 import { useAddress } from "@/providers/AddressProvider";
 import useSWR from "swr";
+import { useMemo, useState } from "react";
+import { endOfYear, startOfYear } from "date-fns";
 
 const Heatmap = () => {
   const { address, chainId } = useAddress();
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const { startDate, endDate } = useMemo(() => {
+    const firstDate = startOfYear(new Date(currentYear, 0, 1));
+    const lastDate = endOfYear(new Date(currentYear, 0, 1));
+
+    return { startDate: firstDate, endDate: lastDate };
+  }, [currentYear]);
+
   const { data, isLoading } = useSWR(
     `/api/heatmap?address=${address}&chainId=${chainId}`
   );
@@ -19,21 +32,47 @@ const Heatmap = () => {
           {data?.count} on-chain memories over{" "}
           {formatTimeDuration(Number(data.start), Number(data.end))}
         </Text>
-        <Group>
-          <div>2019</div>
-          <div>2019</div>
-          <div>2019</div>
-          <div>2019</div>
+        <Group spacing="none" align="center">
+          {getCalendarYearsBetweenTimestamps(data.start, data.end).map(
+            (year) => {
+              if (year === currentYear) {
+                return (
+                  <Text
+                    key={year}
+                    c="dark"
+                    size="sm"
+                    weight="bolder"
+                    h="36"
+                    mx="lg"
+                  >
+                    {year}
+                  </Text>
+                );
+              }
+
+              return (
+                <Button
+                  key={year}
+                  onClick={() => setCurrentYear(year)}
+                  variant="subtle"
+                  color="gray"
+                  size="sm"
+                >
+                  {year}
+                </Button>
+              );
+            }
+          )}
         </Group>
       </Group>
       <ResponsiveCalendar
         data={data.blocks}
-        from={formattedDay(data.start)}
-        to={formatToday()}
+        from={startDate}
+        to={endDate}
         emptyColor="#eeeeee"
         minValue={3}
         colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
-        margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+        margin={{ top: 0, right: 0, bottom: 50, left: 0 }}
         yearSpacing={40}
         monthBorderColor="#ffffff"
         dayBorderWidth={2}

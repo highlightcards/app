@@ -15,7 +15,7 @@ const InsightsPage = () => {
 
       <div
         style={{
-          height: "600px",
+          height: "250px",
           width: "auto",
         }}
       >
