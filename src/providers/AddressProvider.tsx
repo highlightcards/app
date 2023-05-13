@@ -15,7 +15,7 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const addressStr = router.query.address as string;
   const chainIdStr = router.query.chain;
 
-  const { data: ensAddress } = useEnsAddress({
+  const { data: ensAddress, isLoading } = useEnsAddress({
     name: addressStr,
     enabled: addressStr?.endsWith(".eth"),
   });
@@ -31,20 +31,20 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const isValidAddress = isAddress(address);
 
+  if (isLoading || !address) {
+    return (
+      <Center h="calc(100vh - 80px)">
+        <Loader />
+      </Center>
+    );
+  }
+
   if (!isValidAddress) {
     return (
       <Alert title="That doesn't look right!" color="red" mt="xl">
         Looks like we could not find an address at <b>{addressStr}</b>. Please
         double check the address and try again.
       </Alert>
-    );
-  }
-
-  if (!address) {
-    return (
-      <Center h="calc(100vh - 80px)">
-        <Loader />
-      </Center>
     );
   }
 

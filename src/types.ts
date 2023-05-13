@@ -10,8 +10,8 @@ export interface HighlightRequest {
 
 export interface HighlightResponse {
   title: string;
-  metadata: string;
-  icon: string;
+  metadata?: string;
+  icon?: string;
   color: string;
   statistic: string;
   multiple?: boolean;

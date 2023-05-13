@@ -11,6 +11,10 @@ interface EtherscanTransaction {
 }
 
 async function getFirstTransaction(query: HighlightRequest) {
+  if (!query.walletAddress || !query.chainId) {
+    throw new Error("No wallet address provided");
+  }
+
   const result = await Etherscan.query<EtherscanTransaction[]>(
     {
       module: "account",
@@ -20,11 +24,11 @@ async function getFirstTransaction(query: HighlightRequest) {
       page: "1",
       offset: "1",
     },
-    query.chainId || 1
+    query.chainId
   );
 
   if (result?.length === 0) {
-    throw new Error("No transactions found");
+    return null;
   }
 
   const tx = result[0];
@@ -41,16 +45,20 @@ async function getFirstTransaction(query: HighlightRequest) {
         addSuffix: true,
       })
     ),
-    icon: chain.icon,
-    color: "#0066FF",
+    color: chain.color,
     statistic: `Funded from *${shortenAddress(tx.from as `0x${string}`)}*`,
   };
   return response;
 }
 
-const handler: HighlightHandler = {
-  id: "first-transaction",
-  resolve: getFirstTransaction,
+const getHandler = (chainId: number) => {
+  const handler: HighlightHandler = {
+    id: "first-transaction-chain-" + chainId,
+    resolve: (query: HighlightRequest) => {
+      return getFirstTransaction({ ...query, chainId });
+    },
+  };
+  return handler;
 };
 
-export default handler;
+export default getHandler;

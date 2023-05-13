@@ -45,6 +45,7 @@ async function getLensInterests(query: HighlightRequest) {
     icon: "/img/lens.png",
     color: "#216435",
     statistic: `According to *Lens Protocol*`,
+    multiple: true,
   };
   return response;
 }

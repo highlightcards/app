@@ -61,7 +61,7 @@ async function getUniswap(query: HighlightRequest) {
       }
     )}`,
     icon: "/img/uniswap.png",
-    color: chain.color,
+    color: "#FF007A",
     statistic: `Owns ${new Decimal(
       ethers.formatEther(balance as BigNumberish)
     ).toFixed(1)} ${tx.tokenSymbol} tokens`,
