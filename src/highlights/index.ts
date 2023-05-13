@@ -6,6 +6,11 @@ import AirstackNFTs from "./chain/AirstackNFTs";
 import WorldCoin from "./chain/WorldCoin";
 
 const highlights = [
+  LensActivity,
+  LensInterests,
+  Uniswap,
+  AirstackNFTs,
+  WorldCoin,
   firstTransaction(1),
   firstTransaction(10),
   firstTransaction(56),
@@ -13,11 +18,6 @@ const highlights = [
   firstTransaction(137),
   firstTransaction(42161),
   firstTransaction(43114),
-  WorldCoin,
-  Uniswap,
-  LensInterests,
-  LensActivity,
-  AirstackNFTs,
 ];
 
 export default highlights;
