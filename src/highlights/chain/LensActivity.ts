@@ -36,7 +36,7 @@ async function getLensActivity(query: HighlightRequest) {
       publications(request: {
         profileId: "${profileId}",
         publicationTypes: [POST, COMMENT, MIRROR],
-        limit: 10
+        limit: 1
       }) {
         items {
           __typename 
@@ -389,11 +389,10 @@ async function getLensActivity(query: HighlightRequest) {
   });
 
   const latestPublicationCreatedAt =
-    _response.data.publications.items[0].createdAt;
-  const createdAt = Date.parse(latestPublicationCreatedAt);
-  console.log("createdAt ", createdAt);
+    _response?.data?.publications?.items[0]?.createdAt;
 
-  console.log("latestPublicationCreatedAt: ", latestPublicationCreatedAt);
+  if (!latestPublicationCreatedAt) return null;
+  const createdAt = Date.parse(latestPublicationCreatedAt);
 
   const response: HighlightResponse = {
     title: `Active on Lens`,
