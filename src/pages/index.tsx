@@ -12,7 +12,8 @@ import {
   SimpleGrid,
   Title,
 } from "@mantine/core";
-import InsightCard from "@/components/InsightCard";
+import HighlightCard from "@/components/InsightCard";
+import highlights from "@/highlights";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,10 +40,14 @@ export default function Home() {
         </Group>
 
         <SimpleGrid cols={2} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
-          <InsightCard />
-          <InsightCard />
-          <InsightCard />
-          <InsightCard />
+          {highlights.map((highlight) => (
+            <HighlightCard
+              key={highlight.id}
+              highlightId={highlight.id}
+              chainId={1}
+              walletAddress="0xBA78CD28F7132958235D278fF3C5DC5E6d34cc15"
+            />
+          ))}
         </SimpleGrid>
 
         <div className={homeStyles.chart}>

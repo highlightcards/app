@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { Container, MantineProvider } from "@mantine/core";
+import { SWRConfig } from "swr";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -15,18 +16,25 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "light",
+      <SWRConfig
+        value={{
+          fetcher: (resource, init) =>
+            fetch(resource, init).then((res) => res.json()),
         }}
       >
-        <Container size="md">
-          <Component {...pageProps} />
-        </Container>
-      </MantineProvider>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            /** Put your mantine theme override here */
+            colorScheme: "light",
+          }}
+        >
+          <Container size="md">
+            <Component {...pageProps} />
+          </Container>
+        </MantineProvider>
+      </SWRConfig>
     </>
   );
 }
