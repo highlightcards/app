@@ -21,11 +21,7 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   });
 
   const chainId = useMemo(() => {
-    try {
-      return Number.parseInt(chainIdStr as string);
-    } catch (e) {
-      return 1;
-    }
+    return chainIdStr ? parseInt(chainIdStr as string) : 1;
   }, [chainIdStr]);
 
   const address = useMemo(() => {
@@ -38,15 +34,15 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   if (!isValidAddress) {
     return (
       <Alert title="That doesn't look right!" color="red" mt="xl">
-        Looks like we could not find an address at <b>{addressStr}</b>.
-        Please double check the address and try again.
+        Looks like we could not find an address at <b>{addressStr}</b>. Please
+        double check the address and try again.
       </Alert>
     );
   }
 
   if (!address) {
     return (
-      <Center h="100vh">
+      <Center h="calc(100vh - 80px)">
         <Loader />
       </Center>
     );

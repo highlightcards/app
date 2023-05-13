@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { address, chainId } = req.query;
   if (!address) {
     res.status(400).json({
-      error: "Missing address or chainId",
+      error: "Missing address",
     });
     return;
   }
@@ -38,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       module: "account",
       action: "txlist",
       address: address as string,
-      sort: "asc"
+      sort: "asc",
     },
     typeof chainId === "string" ? Number.parseInt(chainId) : 1
   );
