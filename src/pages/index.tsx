@@ -1,15 +1,4 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import dynamic from "next/dynamic";
-import homeStyles from "../styles/Home.module.css";
-import { Avatar, Box, Flex, Group, SimpleGrid, Title } from "@mantine/core";
-import HighlightCard from "@/components/InsightCard";
-import highlights from "@/highlights";
-import { AddressProvider } from "@/providers/AddressProvider";
-
-const inter = Inter({ subsets: ["latin"] });
-
-const Heatmap = dynamic(() => import("../components/Heatmap"), { ssr: false });
 
 export default function Home() {
   return (
@@ -20,30 +9,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <main className={`${inter.className}`}>
-          <Group position="apart" mt="xl">
-            <Box>
-              <Flex gap="md" justify="center" align="center">
-                <Avatar radius="50%" size="xl" />
-                <Title order={1}>vitalik.eth</Title>
-              </Flex>
-            </Box>
-          </Group>
-
-          <div className={homeStyles.chart}>
-            <Heatmap />
-          </div>
-          <SimpleGrid cols={2} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
-            {highlights.map((highlight) => (
-              <HighlightCard
-                key={highlight.id}
-                highlightId={highlight.id}
-                chainId={1}
-                walletAddress="0xBA78CD28F7132958235D278fF3C5DC5E6d34cc15"
-              />
-            ))}
-          </SimpleGrid>
-        </main>
+      <div></div>
     </>
   );
 }

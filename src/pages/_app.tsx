@@ -4,6 +4,9 @@ import { Container, MantineProvider } from "@mantine/core";
 import { SWRConfig } from "swr";
 import { WagmiConfig, createConfig, mainnet } from "wagmi";
 import { createPublicClient, http } from "viem";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const config = createConfig({
   autoConnect: true,
@@ -26,26 +29,28 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <WagmiConfig config={config}>
-        <SWRConfig
-          value={{
-            fetcher: (resource, init) =>
-              fetch(resource, init).then((res) => res.json()),
-          }}
-        >
-          <MantineProvider
-            withGlobalStyles
-            withNormalizeCSS
-            theme={{
-              colorScheme: "light",
+      <main className={`${inter.className}`}>
+        <WagmiConfig config={config}>
+          <SWRConfig
+            value={{
+              fetcher: (resource, init) =>
+                fetch(resource, init).then((res) => res.json()),
             }}
           >
-            <Container size="md">
-              <Component {...pageProps} />
-            </Container>
-          </MantineProvider>
-        </SWRConfig>
-      </WagmiConfig>
+            <MantineProvider
+              withGlobalStyles
+              withNormalizeCSS
+              theme={{
+                colorScheme: "light",
+              }}
+            >
+              <Container size="md">
+                <Component {...pageProps} />
+              </Container>
+            </MantineProvider>
+          </SWRConfig>
+        </WagmiConfig>
+      </main>
     </>
   );
 }
