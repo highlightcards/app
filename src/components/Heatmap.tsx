@@ -69,9 +69,9 @@ const Heatmap = () => {
         data={data.blocks}
         from={startDate}
         to={endDate}
-        emptyColor="#eeeeee"
+        emptyColor="#E8EAEE"
         minValue={3}
-        colors={["#61cdbb", "#97e3d5", "#e8c1a0", "#f47560"]}
+        colors={["#93E7A2", "#3EBE5E", "#2F984A", "#216435"]}
         margin={{ top: 0, right: 0, bottom: 50, left: 0 }}
         yearSpacing={40}
         monthBorderColor="#ffffff"
