@@ -45,6 +45,7 @@ async function getFirstTransaction(query: HighlightRequest) {
 
   const response: HighlightResponse = {
     title: `First Transaction on *${chain.name}*`,
+    icon: chain.icon,
     metadata: capitalizeFirstWord(
       formatDistanceToNow(fromUnixTime(Number.parseInt(tx.timeStamp)), {
         addSuffix: true,
