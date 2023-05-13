@@ -11,6 +11,7 @@ import {
   Group,
   SimpleGrid,
   Title,
+  Text
 } from "@mantine/core";
 import HighlightCard from "@/components/InsightCard";
 import highlights from "@/highlights";
@@ -36,9 +37,11 @@ export default function Home() {
               <Title order={1}>vitalik.eth</Title>
             </Flex>
           </Box>
-          <Button color="teal">Follow</Button>
         </Group>
 
+        <div className={homeStyles.chart}>
+          <Heatmap data={data} />
+        </div>
         <SimpleGrid cols={2} breakpoints={[{ maxWidth: "md", cols: 1 }]}>
           {highlights.map((highlight) => (
             <HighlightCard
@@ -50,9 +53,7 @@ export default function Home() {
           ))}
         </SimpleGrid>
 
-        <div className={homeStyles.chart}>
-          <Heatmap data={data} />
-        </div>
+
       </main>
     </>
   );
