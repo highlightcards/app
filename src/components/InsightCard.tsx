@@ -16,7 +16,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
     `/api/highlights/${highlightId}?address=${walletAddress}&chainId=${chainId}`
   );
 
-  if (error) return null;
+  if (error || data === null) return null;
   if (!data) return <div>loading...</div>;
 
   return (
