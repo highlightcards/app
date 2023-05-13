@@ -1,14 +1,20 @@
 import firstTransaction from "./chain/FirstTransaction";
-import Uniswap from "./chain/Uniswap";
+import UniswapAPE from "./chain/UniswapAPE";
+import UniswapENS from "./chain/UniswapENS";
 import LensInterests from "./chain/LensInterests";
 import LensActivity from "./chain/LensActivity";
 import AirstackNFTs from "./chain/AirstackNFTs";
 import WorldCoin from "./chain/WorldCoin";
+import AirstackLens from "./chain/AirstackLens";
+import AirstackFarcaster from "./chain/AirstackFarcaster";
 
 const highlights = [
+  AirstackLens,
+  AirstackFarcaster,
   LensActivity,
   LensInterests,
-  Uniswap,
+  UniswapAPE,
+  UniswapENS,
   AirstackNFTs,
   WorldCoin,
   firstTransaction(1),

@@ -7,9 +7,9 @@ import { Etherscan } from "@/sdk/etherscan";
 import { formatDistanceToNow, fromUnixTime } from "date-fns";
 
 const chainId = ChainId.MAINNET;
-const APE = new Token(
+const ENS = new Token(
   chainId,
-  "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
+  "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
   18
 );
 
@@ -20,17 +20,17 @@ interface EtherscanTransaction {
 }
 
 async function getPriceInWETH() {
-  const pair = await Fetcher.fetchPairData(APE, WETH[APE.chainId]);
-  const route = new Route([pair], WETH[APE.chainId]);
+  const pair = await Fetcher.fetchPairData(ENS, WETH[ENS.chainId]);
+  const route = new Route([pair], WETH[ENS.chainId]);
   return route.midPrice.invert().toSignificant(6);
 }
 
-async function getUniswap(query: HighlightRequest) {
+async function getUniswapENS(query: HighlightRequest) {
   const balance = await Etherscan.query(
     {
       module: "account",
       action: "tokenbalance",
-      contractAddress: APE.address,
+      contractAddress: ENS.address,
       address: query.walletAddress,
       tag: "latest",
     },
@@ -43,7 +43,7 @@ async function getUniswap(query: HighlightRequest) {
     {
       module: "account",
       action: "tokentx",
-      contractAddress: APE.address,
+      contractAddress: ENS.address,
       address: query.walletAddress,
       tag: "latest",
       page: "1",
@@ -64,10 +64,9 @@ async function getUniswap(query: HighlightRequest) {
 
   const tx = transactions[0];
   const weth = await getPriceInWETH();
-  console.log("weth: ", weth);
 
   const response: HighlightResponse = {
-    title: "Holder of *$APE*",
+    title: "Holder of *$ENS*",
     metadata: `Joined ${formatDistanceToNow(
       fromUnixTime(Number.parseInt(tx.timeStamp)),
       {
@@ -86,8 +85,8 @@ async function getUniswap(query: HighlightRequest) {
 }
 
 const handler: HighlightHandler = {
-  id: "uniswap",
-  resolve: getUniswap,
+  id: "uniswap-ens",
+  resolve: getUniswapENS,
 };
 
 export default handler;

@@ -89,8 +89,8 @@ const Heatmap = () => {
         colors={["#FFD099", "#FFB966", "#FFA133", "#FF8A00"]}
         margin={{ top: 0, right: 0, bottom: 50, left: 0 }}
         yearSpacing={40}
-        monthBorderColor="#ffffff"
-        dayBorderWidth={2}
+        monthBorderColor="rgba(0, 0, 0, 0.0)"
+        dayBorderWidth={0}
         dayBorderColor="#ffffff"
         daySpacing={4}
       />
