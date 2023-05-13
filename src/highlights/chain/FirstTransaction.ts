@@ -28,7 +28,7 @@ async function getFirstTransaction(query: HighlightRequest) {
   );
 
   if (result?.length === 0) {
-    throw new Error("No transactions found");
+    return null;
   }
 
   const tx = result[0];
