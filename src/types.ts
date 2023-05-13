@@ -10,6 +10,11 @@ export interface HighlightUniswapHandler {
   ) => Promise<HighlightResponse | null>;
 }
 
+// export interface HighlightLensHandler {
+//   id: string;
+//   resolve: (query: HighlightLensRequest) => Promise<HighlightResponse | null>;
+// }
+
 export interface HighlightRequest {
   walletAddress: string;
   chainId?: number;
