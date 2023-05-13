@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { gql } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://api-mumbai.lens.dev/",
+  uri: "https://api.lens.dev/",
   cache: new InMemoryCache(),
 });
 
@@ -41,7 +41,7 @@ async function getLensInterests(query: HighlightRequest) {
 }
 
 const handler: HighlightHandler = {
-  id: "lens",
+  id: "lens-interests",
   resolve: getLensInterests,
 };
 
