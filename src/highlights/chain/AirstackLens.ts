@@ -21,7 +21,7 @@ async function getAirstackLens(query: HighlightRequest) {
     }`),
   });
 
-  const lens = _response?.data.Wallet?.socials[1];
+  const lens = _response?.data.Wallet?.socials?.[1];
   if (!lens) return null;
 
   const createdAt = Date.parse(lens.profileCreatedAtBlockTimestamp);

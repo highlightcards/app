@@ -21,7 +21,7 @@ async function getAirstackFarcaster(query: HighlightRequest) {
     }`),
   });
 
-  const farcaster = _response?.data.Wallet?.socials[0];
+  const farcaster = _response?.data.Wallet?.socials?.[0];
   if (!farcaster) return null;
 
   const createdAt = Date.parse(farcaster.profileCreatedAtBlockTimestamp);
