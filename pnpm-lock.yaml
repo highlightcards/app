@@ -26,6 +26,7 @@ specifiers:
   '@types/node': 20.1.3
   '@types/react': 18.2.6
   '@types/react-dom': 18.2.4
+  '@uniswap/sdk': ^3.0.3
   '@uniswap/sdk-core': ^3.2.2
   '@uniswap/v3-sdk': ^3.9.0
   date-fns: ^2.30.0
@@ -46,126 +47,47 @@ specifiers:
   wagmi: ^1.0.2
 
 dependencies:
-  '@airstack/airstack-react':
-    specifier: ^0.2.1
-    version: 0.2.1(react-dom@18.2.0)(react@18.2.0)
-  '@apollo/client':
-    specifier: ^3.7.14
-    version: 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
-  '@dynamic-labs/sdk-react':
-    specifier: 0.16.17-viem.0
-    version: 0.16.17-viem.0(@types/node@20.1.3)(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
-  '@dynamic-labs/wagmi-connector':
-    specifier: 0.16.17-viem.0
-    version: 0.16.17-viem.0(@dynamic-labs/sdk-react-core@0.16.17-viem.0)(@dynamic-labs/wallet-connector-core@0.16.17-viem.0)(@wagmi/core@1.0.2)(react@18.2.0)(viem@0.3.24)(wagmi@1.0.2)
-  '@emotion/react':
-    specifier: ^11.11.0
-    version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
-  '@emotion/server':
-    specifier: ^11.11.0
-    version: 11.11.0
-  '@mantine/core':
-    specifier: ^6.0.10
-    version: 6.0.10(@emotion/react@11.11.0)(@mantine/hooks@6.0.10)(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
-  '@mantine/hooks':
-    specifier: ^6.0.10
-    version: 6.0.10(react@18.2.0)
-  '@mantine/next':
-    specifier: ^6.0.10
-    version: 6.0.10(@emotion/react@11.11.0)(@emotion/server@11.11.0)(next@13.4.2)(react-dom@18.2.0)(react@18.2.0)
-  '@mantine/nprogress':
-    specifier: ^6.0.10
-    version: 6.0.10(@mantine/core@6.0.10)(@mantine/hooks@6.0.10)(react-dom@18.2.0)(react@18.2.0)
-  '@mui/material':
-    specifier: ^5.13.0
-    version: 5.13.0(@emotion/react@11.11.0)(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
-  '@nivo/calendar':
-    specifier: ^0.83.0
-    version: 0.83.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-  '@nivo/colors':
-    specifier: ^0.83.0
-    version: 0.83.0(react-dom@18.2.0)(react@18.2.0)
-  '@nivo/core':
-    specifier: ^0.83.0
-    version: 0.83.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-  '@nivo/legends':
-    specifier: ^0.83.0
-    version: 0.83.0(react-dom@18.2.0)(react@18.2.0)
-  '@nivo/pie':
-    specifier: ^0.83.0
-    version: 0.83.0(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-  '@tabler/icons-react':
-    specifier: ^2.18.0
-    version: 2.18.0(react@18.2.0)
-  '@tanstack/react-query':
-    specifier: ^4.29.5
-    version: 4.29.5(react-dom@18.2.0)(react@18.2.0)
-  '@types/node':
-    specifier: 20.1.3
-    version: 20.1.3
-  '@types/react':
-    specifier: 18.2.6
-    version: 18.2.6
-  '@types/react-dom':
-    specifier: 18.2.4
-    version: 18.2.4
-  '@uniswap/sdk':
-    specifier: ^3.0.3
-    version: 3.0.3(@ethersproject/address@5.7.0)(@ethersproject/contracts@5.7.0)(@ethersproject/networks@5.7.1)(@ethersproject/providers@5.7.2)(@ethersproject/solidity@5.7.0)
-  '@uniswap/sdk-core':
-    specifier: ^3.2.2
-    version: 3.2.2
-  '@uniswap/v3-sdk':
-    specifier: ^3.9.0
-    version: 3.9.0(hardhat@2.14.0)
-  date-fns:
-    specifier: ^2.30.0
-    version: 2.30.0
-  decimal.js:
-    specifier: ^10.4.3
-    version: 10.4.3
-  eslint:
-    specifier: 8.40.0
-    version: 8.40.0
-  eslint-config-next:
-    specifier: 13.4.2
-    version: 13.4.2(eslint@8.40.0)(typescript@5.0.4)
-  ethers:
-    specifier: ^6.3.0
-    version: 6.3.0
-  graphql:
-    specifier: ^16.6.0
-    version: 16.6.0
-  graphql-tag:
-    specifier: ^2.12.6
-    version: 2.12.6(graphql@16.6.0)
-  isomorphic-fetch:
-    specifier: ^3.0.0
-    version: 3.0.0
-  next:
-    specifier: 13.4.2
-    version: 13.4.2(react-dom@18.2.0)(react@18.2.0)
-  react:
-    specifier: 18.2.0
-    version: 18.2.0
-  react-dom:
-    specifier: 18.2.0
-    version: 18.2.0(react@18.2.0)
-  react-markdown:
-    specifier: ^8.0.7
-    version: 8.0.7(@types/react@18.2.6)(react@18.2.0)
-  swr:
-    specifier: ^2.1.5
-    version: 2.1.5(react@18.2.0)
-  typescript:
-    specifier: 5.0.4
-    version: 5.0.4
-  viem:
-    specifier: ^0.3.24
-    version: 0.3.24(typescript@5.0.4)
-  wagmi:
-    specifier: ^1.0.2
-    version: 1.0.2(@types/node@20.1.3)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)(viem@0.3.24)
+  '@airstack/airstack-react': 0.2.1_biqbaboplfbrettd7655fr4n2y
+  '@apollo/client': 3.7.14_gdcq4dv6opitr3wbfwyjmanyra
+  '@dynamic-labs/sdk-react': 0.16.17-viem.0_acgdsm44aw752fdg2ssi7ajbq4
+  '@dynamic-labs/wagmi-connector': 0.16.17-viem.0_w3rmnlhgtloigrzq6rl5soveqm
+  '@emotion/react': 11.11.0_s3k22s5ab4eu26xuel7hiaraxy
+  '@emotion/server': 11.11.0
+  '@lens-protocol/widgets-react': 0.0.14_react@18.2.0
+  '@mantine/core': 6.0.10_ax4rozuubpy5lydedoie5ueqvm
+  '@mantine/hooks': 6.0.10_react@18.2.0
+  '@mantine/next': 6.0.10_rnaowmivx3esaiovxmnon7wr44
+  '@mantine/nprogress': 6.0.10_o2ai6dbc6f7cu3klkweiztmp2i
+  '@mui/material': 5.13.0_5o45vr3cdhr35gitt6uzaolula
+  '@nivo/calendar': 0.83.0_biqbaboplfbrettd7655fr4n2y
+  '@nivo/colors': 0.83.0_biqbaboplfbrettd7655fr4n2y
+  '@nivo/core': 0.83.0_biqbaboplfbrettd7655fr4n2y
+  '@nivo/legends': 0.83.0_biqbaboplfbrettd7655fr4n2y
+  '@nivo/pie': 0.83.0_biqbaboplfbrettd7655fr4n2y
+  '@tabler/icons-react': 2.18.0_react@18.2.0
+  '@tanstack/react-query': 4.29.5_biqbaboplfbrettd7655fr4n2y
+  '@types/node': 20.1.3
+  '@types/react': 18.2.6
+  '@types/react-dom': 18.2.4
+  '@uniswap/sdk': 3.0.3
+  '@uniswap/sdk-core': 3.2.2
+  '@uniswap/v3-sdk': 3.9.0
+  date-fns: 2.30.0
+  decimal.js: 10.4.3
+  eslint: 8.40.0
+  eslint-config-next: 13.4.2_3qfatcekpgbllh6uk5ivyhkbxq
+  ethers: 6.3.0
+  graphql: 16.6.0
+  graphql-tag: 2.12.6_graphql@16.6.0
+  isomorphic-fetch: 3.0.0
+  next: 13.4.2_biqbaboplfbrettd7655fr4n2y
+  react: 18.2.0
+  react-dom: 18.2.0_react@18.2.0
+  react-markdown: 8.0.7_s3k22s5ab4eu26xuel7hiaraxy
+  swr: 2.1.5_react@18.2.0
+  typescript: 5.0.4
+  viem: 0.3.24_typescript@5.0.4
+  wagmi: 1.0.2_3a5ubzr3ugozs62g7auon3kkve
 
 packages:
 
@@ -2686,7 +2608,7 @@ packages:
       toformat: 2.0.0
     dev: false
 
-  /@uniswap/sdk@3.0.3(@ethersproject/address@5.7.0)(@ethersproject/contracts@5.7.0)(@ethersproject/networks@5.7.1)(@ethersproject/providers@5.7.2)(@ethersproject/solidity@5.7.0):
+  /@uniswap/sdk/3.0.3:
     resolution: {integrity: sha512-t4s8bvzaCFSiqD2qfXIm3rWhbdnXp+QjD3/mRaeVDHK7zWevs6RGEb1ohMiNgOCTZANvBayb4j8p+XFdnMBadQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -2696,11 +2618,6 @@ packages:
       '@ethersproject/providers': ^5.0.0-beta
       '@ethersproject/solidity': ^5.0.0-beta
     dependencies:
-      '@ethersproject/address': 5.7.0
-      '@ethersproject/contracts': 5.7.0
-      '@ethersproject/networks': 5.7.1
-      '@ethersproject/providers': 5.7.2
-      '@ethersproject/solidity': 5.7.0
       '@uniswap/v2-core': 1.0.1
       big.js: 5.2.2
       decimal.js-light: 2.5.1
@@ -2710,7 +2627,7 @@ packages:
       toformat: 2.0.0
     dev: false
 
-  /@uniswap/swap-router-contracts@1.3.0(hardhat@2.14.0):
+  /@uniswap/swap-router-contracts/1.3.0:
     resolution: {integrity: sha512-iKvCuRkHXEe0EMjOf8HFUISTIhlxI57kKFllf3C3PUIE0HmwxrayyoflwAz5u/TRsFGYqJ9IjX2UgzLCsrNa5A==}
     engines: {node: '>=10'}
     dependencies:
