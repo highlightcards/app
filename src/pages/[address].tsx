@@ -14,6 +14,7 @@ const InsightsPage = () => {
       </Box>
 
       <div
+        className="heatmap"
         style={{
           height: "250px",
           width: "auto",

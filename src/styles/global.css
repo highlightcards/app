@@ -1,3 +1,7 @@
 .dynamic-shadow-dom {
   --dynamic-font-family-primary: "Inter", sans-serif;
 }
+
+.heatmap rect {
+  rx: 50%;
+}

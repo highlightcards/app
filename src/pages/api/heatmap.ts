@@ -1,5 +1,6 @@
 import { formattedDay } from "@/helpers/time";
 import { Etherscan } from "@/sdk/etherscan";
+import { isAfter, isBefore, parse, subYears } from "date-fns";
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface EtherscanTransaction {
@@ -47,11 +48,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const end = transactions[transactions.length - 1].timeStamp;
   const blocks = parseBlocks(transactions);
 
+  const pastYear = blocks.reduce((acc, block) => {
+    if (
+      isAfter(
+        parse(block.day, "yyyy-MM-dd", new Date()),
+        subYears(new Date(), 1)
+      )
+    ) {
+      return acc + block.value;
+    }
+    return acc;
+  }, 0);
+
   res.status(200).json({
     count: transactions.length,
     start,
     end,
     blocks,
+    pastYear,
   });
 };
 

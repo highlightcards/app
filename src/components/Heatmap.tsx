@@ -3,7 +3,7 @@ import {
   formatTimeDuration,
   getCalendarYearsBetweenTimestamps,
 } from "@/helpers/time";
-import { Button, Group, Text } from "@mantine/core";
+import { Button, Group, Skeleton, Text } from "@mantine/core";
 import { useAddress } from "@/providers/AddressProvider";
 import useSWR from "swr";
 import { useMemo, useState } from "react";
@@ -23,7 +23,19 @@ const Heatmap = () => {
     `/api/heatmap?address=${address}&chainId=${chainId}`
   );
 
-  if (isLoading || !data) return null;
+  if (isLoading) {
+    return (
+      <>
+        <Group position="apart">
+          <Skeleton width={200} height={20} />
+          <Skeleton width={150} height={20} />
+        </Group>
+        <Skeleton height={200} />
+      </>
+    );
+  }
+
+  if (!data) return null;
 
   return (
     <>
@@ -65,13 +77,15 @@ const Heatmap = () => {
           )}
         </Group>
       </Group>
+
       <ResponsiveCalendar
         data={data.blocks}
         from={startDate}
         to={endDate}
         emptyColor="#E8EAEE"
-        minValue={3}
-        colors={["#93E7A2", "#3EBE5E", "#2F984A", "#216435"]}
+        minValue={0}
+        maxValue={3}
+        colors={["#FFD099", "#FFB966", "#FFA133", "#FF8A00"]}
         margin={{ top: 0, right: 0, bottom: 50, left: 0 }}
         yearSpacing={40}
         monthBorderColor="#ffffff"
