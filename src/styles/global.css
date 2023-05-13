@@ -5,7 +5,3 @@
 .heatmap rect {
   rx: 50%;
 }
-
-.heatmap rect[style] {
-  stroke-width: 0px !important;
-}
