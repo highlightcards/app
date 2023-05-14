@@ -96,6 +96,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
         withBorder
         padding="lg"
         radius="lg"
+        style={{ cursor: clickable ? "pointer" : "default" }}
       >
         <Flex align="center" gap="6px">
           {data.multiple ? (

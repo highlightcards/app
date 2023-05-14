@@ -5,6 +5,7 @@ import { SWRConfig } from "swr";
 import Navigation from "@/components/Navigation";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
+import { Analytics } from '@vercel/analytics/react';
 import "@/styles/global.css";
 
 export default function App(props: AppProps) {
@@ -55,6 +56,9 @@ export default function App(props: AppProps) {
                 <Component {...pageProps} />
               </SWRConfig>
             </Container>
+
+            <Analytics />
+
           </MantineProvider>
         </DynamicWagmiConnector>
       </DynamicContextProvider>
