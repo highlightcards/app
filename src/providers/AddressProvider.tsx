@@ -34,7 +34,7 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   if (isLoading || !address) {
     return (
       <Center h="calc(100vh - 80px)">
-        <Loader />
+        <Loader color="orange" />
       </Center>
     );
   }
