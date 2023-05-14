@@ -7,10 +7,14 @@ import AirstackNFTs from "./chain/AirstackNFTs";
 import WorldCoin from "./chain/WorldCoin";
 import AirstackLens from "./chain/AirstackLens";
 import AirstackFarcaster from "./chain/AirstackFarcaster";
+import GraphPOAPCount from "./chain/GraphPOAPCount";
+import GraphPOAPRarest from "./chain/GraphPOAPRarest";
 
 const highlights = [
   AirstackLens,
   AirstackFarcaster,
+  GraphPOAPCount,
+  GraphPOAPRarest,
   LensActivity,
   LensInterests,
   UniswapAPE,
