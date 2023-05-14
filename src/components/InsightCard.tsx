@@ -57,7 +57,7 @@ const HighlightCard: React.FC<HighlightCardProps> = ({
   if (error || data === null) return null;
 
   return (
-    <Card withBorder padding="lg" radius="lg">
+    <Card withBorder padding="lg" radius="lg" style={{ cursor: "pointer" }}>
       <Flex align="center" gap="6px">
         {data.multiple ? (
           <Flex>
