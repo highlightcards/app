@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { Analytics } from '@vercel/analytics/react';
+import { LensProvider } from "@/providers/LensProvider";
 import "@/styles/global.css";
 
 export default function App(props: AppProps) {
@@ -45,7 +46,7 @@ export default function App(props: AppProps) {
             }}
           >
             <Navigation />
-
+            <LensProvider>
             <Container size="md" mb="xl">
               <SWRConfig
                 value={{
@@ -56,7 +57,7 @@ export default function App(props: AppProps) {
                 <Component {...pageProps} />
               </SWRConfig>
             </Container>
-
+            </LensProvider>
             <Analytics />
 
           </MantineProvider>

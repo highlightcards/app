@@ -1,13 +1,12 @@
-import { Anchor, Button, Image, Modal, Stack, Text } from "@mantine/core";
-import { useState } from "react";
+import { Button, Image, Modal, Stack, Text } from "@mantine/core";
 import HighlightCard, { HighlightCardProps } from "./InsightCard";
 import Link from "next/link";
-
+import {  useLens } from "@/providers/LensProvider";
 interface ShareModalProps extends HighlightCardProps {
   opened: boolean;
   shareUrl: string;
   onClose: () => void;
-}
+} 
 
 const ShareModal: React.FC<ShareModalProps> = ({
   opened,
@@ -15,6 +14,16 @@ const ShareModal: React.FC<ShareModalProps> = ({
   shareUrl,
   ...rest
 }) => {
+
+  const { login, getLensProfile, postPublication } = useLens();
+  const ipfsHash = "ar://aM1xyMXX12N1QibeWGnFCmoD1sLJt9WjIPhDa-IruDw"
+  const handler = async () => {
+  await login()
+  const profile = await getLensProfile()
+  console.log({ profile })
+  const post = await postPublication(profile?.id, ipfsHash)
+  console.log({ post })
+  };
   return (
     <Modal
       opened={opened}
@@ -36,18 +45,16 @@ const ShareModal: React.FC<ShareModalProps> = ({
       </Stack>
 
       <HighlightCard {...rest} />
-
-      <Anchor href={shareUrl} target="_blank">
         <Button
           fullWidth
           color="green.9"
           radius="md"
           leftIcon={<Image src="/Lens.png" width={18} height={18} alt="" />}
           mt="xl"
+          onClick={handler}
         >
-          Publish
+          Post Highlight
         </Button>
-      </Anchor>
     </Modal>
   );
 };
