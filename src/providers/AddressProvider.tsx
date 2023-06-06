@@ -18,6 +18,7 @@ export const AddressProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { data: ensAddress, isLoading } = useEnsAddress({
     name: addressStr,
     enabled: addressStr?.endsWith(".eth"),
+    chainId: 1
   });
 
   const chainId = useMemo(() => {

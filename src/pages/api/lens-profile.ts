@@ -1,7 +1,6 @@
-import { HighlightHandler, HighlightRequest, HighlightResponse } from "@/types";
+import { HighlightRequest } from "@/types";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { gql } from "@apollo/client";
-import { formatDistanceToNow } from "date-fns";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const apolloClient = new ApolloClient({

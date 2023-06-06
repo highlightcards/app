@@ -9,9 +9,9 @@ import { setContext } from "@apollo/client/link/context";
 const API_URL = "https://api.lens.dev";
 
 const authLink = setContext((_, { headers }) => {
-  const token = JSON.parse(window.localStorage.getItem("lensToken") || "''");
+  const localStorageToken = window.localStorage.getItem("lensToken")
+  const token = localStorageToken ? JSON.parse(localStorageToken) : "";
   console.log("token", token)
-  console.log("headers", headers)
   return {
     headers: {
       ...headers,

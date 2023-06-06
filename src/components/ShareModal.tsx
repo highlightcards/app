@@ -1,12 +1,14 @@
 import { Button, Image, Modal, Stack, Text } from "@mantine/core";
 import HighlightCard, { HighlightCardProps } from "./InsightCard";
-import Link from "next/link";
-import {  useLens } from "@/providers/LensProvider";
+import { useLens } from "@/providers/LensProvider";
+import { useState, useEffect } from "react";
+import { useContractWrite } from "wagmi";
+import { LensHub } from "@/abi/LensHub";
 interface ShareModalProps extends HighlightCardProps {
   opened: boolean;
   shareUrl: string;
   onClose: () => void;
-} 
+}
 
 const ShareModal: React.FC<ShareModalProps> = ({
   opened,
@@ -14,16 +16,46 @@ const ShareModal: React.FC<ShareModalProps> = ({
   shareUrl,
   ...rest
 }) => {
+  const { write } = useContractWrite({
+    address: "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d",
+    abi: LensHub,
+    functionName: "post",
+    onSuccess: ({ hash }) => {
+      console.log(hash);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
-  const { login, getLensProfile, postPublication } = useLens();
-  const ipfsHash = "ar://aM1xyMXX12N1QibeWGnFCmoD1sLJt9WjIPhDa-IruDw"
-  const handler = async () => {
-  await login()
-  const profile = await getLensProfile()
-  console.log({ profile })
-  const post = await postPublication(profile?.id, ipfsHash)
-  console.log({ post })
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { login, getLensProfile, postPublication, sign } = useLens();
+  const ipfsHash = "ar://LK50nMHbJ9E8v9X9g2Bk2864BCLNXfWkQeyk8Giu2PI";
+
+  const loginHandler = async () => {
+    try {
+      await login();
+      setIsLoggedIn(true);
+    } catch (e) {
+      console.error(e);
+    }
   };
+  const handler = async () => {
+    await loginHandler();
+    const profile = await getLensProfile();
+    const post = await postPublication(profile?.id, ipfsHash);
+    console.log({post});
+    const { typedData } = post;
+    // const signed = await sign(typedData);
+    return write({ args: [typedData.value] });
+  };
+
+  useEffect(() => {
+    return () => {
+      setIsLoggedIn(false);
+    };
+  }, []);
+
   return (
     <Modal
       opened={opened}
@@ -45,16 +77,16 @@ const ShareModal: React.FC<ShareModalProps> = ({
       </Stack>
 
       <HighlightCard {...rest} />
-        <Button
-          fullWidth
-          color="green.9"
-          radius="md"
-          leftIcon={<Image src="/Lens.png" width={18} height={18} alt="" />}
-          mt="xl"
-          onClick={handler}
-        >
-          Post Highlight
-        </Button>
+      <Button
+        fullWidth
+        color="green.9"
+        radius="md"
+        leftIcon={<Image src="/Lens.png" width={18} height={18} alt="" />}
+        mt="xl"
+        onClick={handler}
+      >
+        {isLoggedIn ? `Sign-in to Lens` : `Post Highlight`}
+      </Button>
     </Modal>
   );
 };

@@ -11,6 +11,7 @@
   "dependencies": {
     "@airstack/airstack-react": "^0.2.1",
     "@apollo/client": "^3.7.14",
+    "@bundlr-network/client": "^0.11.2",
     "@dynamic-labs/sdk-react": "0.16.17-viem.0",
     "@dynamic-labs/wagmi-connector": "0.16.17-viem.0",
     "@emotion/react": "^11.11.0",
@@ -35,6 +36,7 @@
     "@uniswap/sdk-core": "^3.2.2",
     "@uniswap/v3-sdk": "^3.9.0",
     "@vercel/analytics": "^1.0.1",
+    "arbundles": "^0.9.6",
     "date-fns": "^2.30.0",
     "decimal.js": "^10.4.3",
     "eslint": "8.40.0",
